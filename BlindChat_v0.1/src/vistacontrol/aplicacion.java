@@ -12,4 +12,8 @@ public class aplicacion {
 	}
 	
 ////MENUS////////////////////////////////////////////////////////////////////////////
+	
+	public static void menu_Inicial() {
+		System.out.println("********BlincChat********");
+	}
 }
