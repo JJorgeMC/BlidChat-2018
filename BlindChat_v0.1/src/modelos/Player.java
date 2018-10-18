@@ -2,13 +2,13 @@ package modelos;
 
 public class Player {
 	private String id_player;
-	private String user;
+	private String username;
 	private String password;
 	private boolean state;
 	public Player(String user, String password, boolean state) {
 		super();
 		this.id_player = vistacontrol.aplicacion.getID_Pls();
-		this.user = user;
+		this.username = user;
 		this.password = password;
 		this.state = state;
 	}
@@ -16,11 +16,11 @@ public class Player {
 		return id_player;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsername(String user) {
+		this.username = user;
 	}
 	public String getPassword() {
 		return password;
