@@ -16,4 +16,10 @@ public class aplicacion {
 	public static void menu_Inicial() {
 		System.out.println("********BlincChat********");
 	}
+	public static void main(String[] args) {
+		
+		System.out.println("");
+		
+	}
+	
 }
