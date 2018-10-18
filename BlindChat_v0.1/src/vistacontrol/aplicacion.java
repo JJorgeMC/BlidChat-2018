@@ -16,7 +16,7 @@ public class aplicacion {
 		return String.valueOf(ID_Us);
 	}
 ////MENUS////////////////////////////////////////////////////////////////////////////
-	
+	//hola mundo
 	public static void menu_Inicial() {
 		System.out.println("********BlincChat********");
 	}
