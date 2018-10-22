@@ -76,6 +76,7 @@ public class aplicacion {
 	System.out.print("\t\tIngrese de [1-4] : ");
 	
 	}
+	/////// dfysjdklfgd
 
 ////Metodos auxiliares /////////////////////////////////////////////////////////////
 	
