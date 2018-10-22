@@ -1,11 +1,15 @@
 package vistacontrol;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
+import java.util.Scanner;
+import modelos.*;
 import util.Cadena;
 
 public class aplicacion {
 	private static Scanner in = new Scanner(System.in);
+	private static ArrayList<User> Us = new ArrayList<>();
+	private static ArrayList<User> ranking = new ArrayList<>();  
 	private static int ID_Pls = 0;
 	private static int ID_Us = 0;
 	
@@ -22,7 +26,6 @@ public class aplicacion {
 	public static void Modalidad() {
 		
 	}
-	
 	public static void Ranking() {
 		
 	}
@@ -72,6 +75,16 @@ public class aplicacion {
 	System.out.println("\t\t4. Salir");
 	System.out.print("\t\tIngrese de [1-4] : ");
 	
+	}
+
+////Metodos auxiliares /////////////////////////////////////////////////////////////
+	
+	public static void addusertoranking(String code) {
+		for (User user : Us) {
+			if (code.equals(user.getId_user())) {
+				ranking.add(user);
+			}
+		}
 	}
 	public static void main(String[] args) {
 		int opcion;
