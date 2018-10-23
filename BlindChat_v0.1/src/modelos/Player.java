@@ -6,12 +6,12 @@ public class Player {
 	private String password;
 	private boolean state;
 	private String id_user;
-	public Player(String user, String password, boolean state, String id_user) {
+	public Player(String user, String password, String id_user) {
 		super();
 		this.id_player = vistacontrol.aplicacion.getID_Pls();
 		this.username = user;
 		this.password = password;
-		this.state = state;
+		this.state = false;
 		this.id_user = id_user;
 	}
 	public String getId_user() {

@@ -8,8 +8,8 @@ import util.Cadena;
 
 public class aplicacion {
 	private static Scanner in = new Scanner(System.in);
-	private static ArrayList<User> Us = new ArrayList<>();
-	private static ArrayList<User> ranking = new ArrayList<>();  
+	public static ArrayList<User> Us = new ArrayList<>();
+	public static ArrayList<User> ranking = new ArrayList<>();  
 	private static int ID_Pls = 0;
 	private static int ID_Us = 0;
 	
@@ -31,7 +31,36 @@ public class aplicacion {
 	}
 	
 	public static void Registro() {
+		int intentos = 0;
+		Boolean clavescorrectas = false;
+		String password;
+		System.out.println("\t\t\033[31m*BIENVENIDO AL REGISTRO DE USUARIOS*");
+		System.out.println("\t\t\033[33mPORFAVOR INGRESA TU NOMBRE: \033[32m");
+		System.out.print("\t\t"); String realname = Cadena.leerstring();
+		System.out.println("\t\t\033[33mINGRESA UN NOMBRE DE USUARIO: \033[32m(Example: Levaneitor123)");
+		System.out.print("\t\t"); String nickname = Cadena.leerstring();
+		System.out.println("\t\t\033[33mINGRESA UN PASSWORD: \033[32m");
+		System.out.print("\t\t"); password = Cadena.leerstring();
+		do {
+			intentos++;
+		System.out.println("\t\t\033[33mCONFIRMAR PASSWORD: \033[32m");
+		System.out.print("\t\t"); String pass2 =  Cadena.leerstring();
+		if(password.equals(pass2)) {
+			clavescorrectas = true;
+		}
+		}while(intentos <3 && clavescorrectas == false);
 		
+		if(clavescorrectas == true) {
+		User u = new User(realname, nickname, password);
+		 Us.add(u);
+		 Cadena.saltosdelinea(2);
+		 System.out.println("\t\t\033[32mREGISTRO EXITOSO...");
+		 Cadena.saltosdelinea(3);
+		}else {
+			Cadena.saltosdelinea(2);
+			System.out.println("\t\033[31mREGISTRO CANCELADO......");
+			Cadena.saltosdelinea(3);
+		}
 	}
 	
 	public static void salir() {
@@ -76,7 +105,7 @@ public class aplicacion {
 	System.out.print("\t\tIngrese de [1-4] : ");
 	
 	}
-	/////// dfysjdklfgd
+
 
 ////Metodos auxiliares /////////////////////////////////////////////////////////////
 	
