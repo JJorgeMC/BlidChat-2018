@@ -3,13 +3,15 @@ package modelos;
 public class Player {
 	private String id_player;
 	private String username;
+	private String realname;
 	private String password;
 	private boolean state;
 	private String id_user;
-	public Player(String user, String password, String id_user) {
+	public Player(String user, String realname, String password, String id_user) {
 		super();
 		this.id_player = vistacontrol.aplicacion.getID_Pls();
 		this.username = user;
+		this.setRealname(realname);
 		this.password = password;
 		this.state = false;
 		this.id_user = id_user;
@@ -41,6 +43,12 @@ public class Player {
 	}
 	public void setState(boolean state) {
 		this.state = state;
+	}
+	public String getRealname() {
+		return realname;
+	}
+	public void setRealname(String realname) {
+		this.realname = realname;
 	}
 	
 	

@@ -9,10 +9,11 @@ import util.Cadena;
 public class aplicacion {
 	private static Scanner in = new Scanner(System.in);
 	public static ArrayList<User> Us = new ArrayList<>();
-	public static ArrayList<User> ranking = new ArrayList<>();  
+	public static ArrayList<User> ranking = new ArrayList<>(); 
+	public static ArrayList<Question> Qs = new ArrayList<>();
 	private static int ID_Pls = 0;
 	private static int ID_Us = 0;
-	
+	private static int ID_Qs = 0;
 	public static String getID_Pls() {
 		ID_Pls++;
 		return String.valueOf(ID_Pls);
@@ -21,10 +22,30 @@ public class aplicacion {
 		ID_Us++;
 		return String.valueOf(ID_Us);
 	}
+	public static String getID_Qs() {
+		ID_Qs++;
+		return String.valueOf(ID_Qs);
+	}
 ////MENUS////////////////////////////////////////////////////////////////////////////
 	
 	public static void Modalidad() {
-		
+		int op_DW;
+		do {
+			System.out.println("***********Modalidades**********");
+			System.out.println("\t1. MaskChat");
+			System.out.println("\t2. salir");
+			System.out.print("Ingresa una opcion: ");
+			op_DW = Integer.valueOf(in.nextLine());
+			switch (op_DW) {
+			case 1:
+				MaskChat.md_MaskChat();
+				break;
+
+			default:
+				System.out.println("Valor incorrecto!!!");
+				break;
+			}
+		} while (op_DW!=2);
 	}
 	public static void Ranking() {
 		
