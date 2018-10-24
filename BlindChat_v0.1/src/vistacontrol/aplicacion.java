@@ -127,7 +127,7 @@ public class aplicacion {
 	
 	}
 
-
+//xd
 ////Metodos auxiliares /////////////////////////////////////////////////////////////
 	
 	public static void addusertoranking(String code) {
