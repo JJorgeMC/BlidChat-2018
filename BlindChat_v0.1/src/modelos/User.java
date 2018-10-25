@@ -14,7 +14,7 @@ public class User {
 		this.realname = realname;
 		this.password = password;
 		this.score = 0;
-		this.state = true;
+		this.state = false;
 	}
 
 	public String getId_user() {

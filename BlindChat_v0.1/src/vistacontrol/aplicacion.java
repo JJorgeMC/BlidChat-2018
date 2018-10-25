@@ -72,7 +72,7 @@ public class aplicacion {
 		}while(intentos <3 && clavescorrectas == false);
 		
 		if(clavescorrectas == true) {
-		User u = new User(realname, nickname, password);
+		User u = new User(nickname, realname, password);
 		 Us.add(u);
 		 Cadena.saltosdelinea(2);
 		 System.out.println("\t\t\033[32mREGISTRO EXITOSO...");

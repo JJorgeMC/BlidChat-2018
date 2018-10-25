@@ -63,7 +63,7 @@ public class MaskChat {
 			adivinar();
 			revelacion();
 			do {
-				System.out.print("Desea agregar otro usuario (S/N): ");
+				System.out.print("DEsea jugar de nuevo (S/N): ");
 				String op_sn = in.nextLine();
 				if (!op_sn.equalsIgnoreCase("s") && !op_sn.equalsIgnoreCase("n")) {
 					System.out.println("Error valor ingrasado invalido!!!");
