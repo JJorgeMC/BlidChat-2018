@@ -111,7 +111,7 @@ public class aplicacion {
 	
 	
 	public static void menu_Inicial() {
-		
+		 
 	
 	System.out.println(" \033[32m   ____  ___           __________          __ \r\n" + 
 			"   / __ )/ (_____  ____/ / ____/ /_  ____ _/ /_\r\n" + 

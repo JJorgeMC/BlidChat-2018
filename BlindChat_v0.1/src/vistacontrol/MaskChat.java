@@ -9,6 +9,7 @@ import modelos.Question;
 import modelos.User;
 
 public class MaskChat {
+	private static ArrayList<String> orden = new ArrayList<>();
 	private static ArrayList<Player> Pls = new ArrayList<>();
 	private static Scanner in = new Scanner(System.in);
 	//Menu/////////////////////////////////////////////////////////////////////////////
@@ -53,13 +54,14 @@ public class MaskChat {
 			System.out.println();
 			System.out.println("********MaskChat********");
 			insertPlayers();
+			createOrden();
 			System.out.println();
 			System.out.print("Ingresa el numero de preguntas: ");
 			int pr = Integer.valueOf(in.nextLine());
 			createQuestion(pr);
 			ordendeturnos();
-			ronda_preguntas();
-			ronda_respuestas();
+			ronda_preguntas(pr);
+			ronda_respuestas(pr);
 			adivinar();
 			revelacion();
 			do {
@@ -75,19 +77,64 @@ public class MaskChat {
 			
 		}while (op);		
 	}
+	private static void createOrden() {		
+		for(Player p: Pls) {
+			String a = p.getId_player();
+			orden.add(a);
+		}
+		
+	}
 	public static void ordendeturnos() {
 		System.out.println();
 		System.out.println("*Lista de turnos*************************");
 		int i = 0;
-		for(Player p: Pls) {
+		for(String id: orden) {
 			i++;
-			System.out.println(i+".  "+p.getRealname());
+			String name = Pls.get(Pls_sendPosition(id)).getRealname();
+			System.out.println(i+".\t"+name);
 		}
 	}
-	public static void ronda_preguntas() {
-		
+	public static void ronda_preguntas(int pr) {
+		System.out.println();
+		System.out.println("*Ronda de preguntas****************************");
+		for(int i = 0 ; i < orden.size(); i++) {	
+			String id = orden.get(i);
+			int ps = Pls_sendPosition(id);
+			System.out.println();
+			System.out.println("turno de: "+Pls.get(ps).getRealname());
+			ArrayList<Question> Qs_aux = new ArrayList<>();
+			int j = 0;
+			for(Question q: aplicacion.Qs) {
+				if(q.getId_emisor().equals(id)) {
+					Qs_aux.add(q);
+					j++;
+					System.out.println("Escriba una pregunta para "+Pls.get(Pls_sendPosition(q.getId_receptor())).getUsername());
+					System.out.print("Pregunta "+j+": ");
+					String pregunta = in.nextLine();
+					q.setQuestion(pregunta);
+					if(pr==j) {
+						break;
+					}else {
+						System.out.println();
+					}					
+				}
+			}
+			readQuestion_Qs_aux(Qs_aux);
+			
+			System.out.println("Turno terminado");
+			
+		}
 	}
-	public static void ronda_respuestas() {
+	public static void readQuestion_Qs_aux(ArrayList<Question> Qs_aux) {
+		int j=0;
+		System.out.println();
+		System.out.println("*Lista de preguntas: ");
+		for(Question q: Qs_aux) {
+			j++;
+			System.out.println(j+".\t"+q.getQuestion());
+		}
+	}
+	public static void ronda_respuestas(int pr) {
 		
 	}
 	public static void adivinar() {
@@ -96,19 +143,29 @@ public class MaskChat {
 	public static void revelacion() {
 		
 	}
+	public static int Pls_sendPosition(String id) {
+		int ps = -1;
+		for(Player p: Pls) {
+			ps++;
+			if(p.getId_player().equals(id)) {
+				break;
+			}
+		}
+		return ps;
+	}
 	public static void createQuestion(int pr) {
 		Collections.shuffle(Pls);
 		for(int i=0; i<Pls.size(); i++) {
-			if(Pls.size()%2 != 0 && i==Pls.size()) {
+			if(i==Pls.size()-1) {
 				for(int j = 0; j < pr;j++) {
 					Question q = new Question(Pls.get(i).getId_player(), Pls.get(0).getId_player());
 					aplicacion.Qs.add(q);
 				}					
-			}else {
+			}else if(i<Pls.size()-1){
 				for(int j = 0; j < pr; j++) {
-					Question q = new Question(Pls.get(i).getId_player(), Pls.get(0).getId_player());
+					Question q = new Question(Pls.get(i).getId_player(), Pls.get(i+1).getId_player());
 					aplicacion.Qs.add(q);
-				}		
+				}
 			}
 		}
 	}
