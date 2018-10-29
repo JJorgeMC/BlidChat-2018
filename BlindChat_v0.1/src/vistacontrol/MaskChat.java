@@ -22,6 +22,9 @@ public class MaskChat {
 		System.out.println("\t[3] Volver a menu principal");
 		System.out.print("Ingrese una opcion: ");
 	}
+	
+	//Metodos principales/////////////////////////////////////////////////////////////
+	
 	public static void md_MaskChat() {
 		int n_DW;
 		do {
@@ -76,13 +79,22 @@ public class MaskChat {
 			} while(1!=2);
 			
 		}while (op);		
-	}
-	private static void createOrden() {		
-		for(Player p: Pls) {
-			String a = p.getId_player();
-			orden.add(a);
+	}	
+	public static void createQuestion(int pr) {
+		Collections.shuffle(Pls);
+		for(int i=0; i<Pls.size(); i++) {
+			if(i==Pls.size()-1) {
+				for(int j = 0; j < pr;j++) {
+					Question q = new Question(Pls.get(i).getId_player(), Pls.get(0).getId_player());
+					aplicacion.Qs.add(q);
+				}					
+			}else if(i<Pls.size()-1){
+				for(int j = 0; j < pr; j++) {
+					Question q = new Question(Pls.get(i).getId_player(), Pls.get(i+1).getId_player());
+					aplicacion.Qs.add(q);
+				}
+			}
 		}
-		
 	}
 	public static void ordendeturnos() {
 		System.out.println();
@@ -124,7 +136,28 @@ public class MaskChat {
 			System.out.println("Turno terminado");
 			
 		}
+	}	
+	public static void ronda_respuestas(int pr) {
+		System.out.println();
+		System.out.println("********Ronda de respuestas*******");
+		for(String id: orden) {
+			//turno de ...
+			int ps = Pls_sendPosition(id);
+			System.out.println();
+			System.out.println("Turno de "+Pls.get(ps).getRealname());
+			
+			
+		}
 	}
+	public static void adivinar() {
+		
+	}
+	public static void revelacion() {
+		
+	}
+	
+	//METODOS AUXILIARES/////////////////////////////////////////////////////////////
+	
 	public static void readQuestion_Qs_aux(ArrayList<Question> Qs_aux) {
 		int j=0;
 		System.out.println();
@@ -133,16 +166,7 @@ public class MaskChat {
 			j++;
 			System.out.println(j+".\t"+q.getQuestion());
 		}
-	}
-	public static void ronda_respuestas(int pr) {
-		
-	}
-	public static void adivinar() {
-		
-	}
-	public static void revelacion() {
-		
-	}
+	}	
 	public static int Pls_sendPosition(String id) {
 		int ps = -1;
 		for(Player p: Pls) {
@@ -152,23 +176,7 @@ public class MaskChat {
 			}
 		}
 		return ps;
-	}
-	public static void createQuestion(int pr) {
-		Collections.shuffle(Pls);
-		for(int i=0; i<Pls.size(); i++) {
-			if(i==Pls.size()-1) {
-				for(int j = 0; j < pr;j++) {
-					Question q = new Question(Pls.get(i).getId_player(), Pls.get(0).getId_player());
-					aplicacion.Qs.add(q);
-				}					
-			}else if(i<Pls.size()-1){
-				for(int j = 0; j < pr; j++) {
-					Question q = new Question(Pls.get(i).getId_player(), Pls.get(i+1).getId_player());
-					aplicacion.Qs.add(q);
-				}
-			}
-		}
-	}
+	}	
 	public static void insertPlayers() {
 		boolean op = true;
 		do {
@@ -196,11 +204,16 @@ public class MaskChat {
 		
 		
 	}
-	
+	private static void createOrden() {		
+		for(Player p: Pls) {
+			String a = p.getId_player();
+			orden.add(a);
+		}
+		
+	}
 	public static void addPlayer(String user, String pass) {
 		int f = 0;
 		for(User u: aplicacion.Us) {
-			f++;
 			if(user.equals(u.getNickname()) && pass.equals(u.getPassword())) {
 				if(u.isState()==false) {					
 					System.out.println("(Ingrese un nombre falso)");
@@ -214,6 +227,7 @@ public class MaskChat {
 					System.out.println("El usario ya esta paricipando");
 				}
 			}
+			f++;
 		}
 		if (f==aplicacion.Us.size()) {
 			System.out.println("El usuario o contraseña son incorrectos");
