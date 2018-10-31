@@ -36,6 +36,7 @@ public class aplicacion {
 			System.out.println("\t2. salir");
 			System.out.print("Ingresa una opcion: ");
 			op_DW = Integer.valueOf(in.nextLine());
+			Cadena.saltosdelinea(4);
 			switch (op_DW) {
 			case 1:
 				MaskChat.md_MaskChat();
@@ -46,9 +47,19 @@ public class aplicacion {
 				break;
 			}
 		} while (op_DW!=2);
+		
 	}
 	public static void Ranking() {
-		
+		System.out.println(" __                      \r\n" + 
+				"/ _\\ ___ ___  _ __ ___ _ \r\n" + 
+				"\\ \\ / __/ _ \\| '__/ _ (_)\r\n" + 
+				"_\\ \\ (_| (_) | | |  __/_ \r\n" + 
+				"\\__/\\___\\___/|_|  \\___(_)");
+		Cadena.saltosdelinea(1);
+		System.out.println("NRO\t\tNOMBRE\t\tPUNTAJE");
+		for (Question question : Qs) {
+			
+		}
 	}
 	
 	public static void Registro() {

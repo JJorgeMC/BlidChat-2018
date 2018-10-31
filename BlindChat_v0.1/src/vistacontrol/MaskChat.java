@@ -7,6 +7,7 @@ import java.util.Scanner;
 import modelos.Player;
 import modelos.Question;
 import modelos.User;
+import util.Cadena;
 
 public class MaskChat {
 	private static ArrayList<String> orden = new ArrayList<>();
@@ -16,7 +17,14 @@ public class MaskChat {
 	
 	public static void menu_principal() {
 		System.out.println();
-		System.out.println("*Modalidad: MaskChat*****************************");
+		System.out.println("*___  ___          _    _____ _           _   \r\n" + 
+				"|  \\/  |         | |  /  __ \\ |         | |  \r\n" + 
+				"| .  . | __ _ ___| | _| /  \\/ |__   __ _| |_ \r\n" + 
+				"| |\\/| |/ _` / __| |/ / |   | '_ \\ / _` | __|\r\n" + 
+				"| |  | | (_| \\__ \\   <| \\__/\\ | | | (_| | |_ \r\n" + 
+				"\\_|  |_/\\__,_|___/_|\\_\\\\____/_| |_|\\__,_|\\__|\r\n" + 
+				"                                             ");
+		Cadena.saltosdelinea(1);
 		System.out.println("\t[1] Reglas de juego");
 		System.out.println("\t[2] Inciar partida");
 		System.out.println("\t[3] Volver a menu principal");
@@ -55,7 +63,13 @@ public class MaskChat {
 		boolean op = true;
 		do {
 			System.out.println();
-			System.out.println("********MaskChat********");
+			System.out.println("___  ___          _    _____ _           _   \r\n" + 
+					"|  \\/  |         | |  /  __ \\ |         | |  \r\n" + 
+					"| .  . | __ _ ___| | _| /  \\/ |__   __ _| |_ \r\n" + 
+					"| |\\/| |/ _` / __| |/ / |   | '_ \\ / _` | __|\r\n" + 
+					"| |  | | (_| \\__ \\   <| \\__/\\ | | | (_| | |_ \r\n" + 
+					"\\_|  |_/\\__,_|___/_|\\_\\\\____/_| |_|\\__,_|\\__|\r\n" + 
+					"                                             ");
 			insertPlayers();
 			createOrden();
 			System.out.println();
