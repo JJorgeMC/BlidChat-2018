@@ -135,21 +135,60 @@ public class MaskChat {
 			
 			System.out.println("Turno terminado");
 			
+			
 		}
 	}	
 	public static void ronda_respuestas(int pr) {
 		System.out.println();
 		System.out.println("********Ronda de respuestas*******");
+		
 		for(String id: orden) {
 			//turno de ...
 			int ps = Pls_sendPosition(id);
 			System.out.println();
 			System.out.println("Turno de "+Pls.get(ps).getRealname());
-			
+			ArrayList<Question> As_aux = new ArrayList<>();
+			int j = 0;
+			for(Question a: aplicacion.Qs) {
+				if(a.getId_receptor().equals(id)) {
+					As_aux.add(a);
+					j++;					
+					System.out.print("Pregunta "+j+": " + a.getQuestion());
+					System.out.print("Respuesta: ");
+					String respuesta = in.nextLine();
+					a.setQuestion(respuesta);
+					if(pr==j) {
+						break;
+					}else {
+						System.out.println();
+					}					
+				}
+			}
+			System.out.println("Turno terminado...");
 			
 		}
 	}
 	public static void adivinar() {
+		System.out.println();
+		System.out.println("********Ronda de adivinacion********");
+		System.out.println("---<¿Quien era la persona detras de la mascara?>---");
+		
+		for( String id: orden) {
+			int ps = Pls_sendPosition(id);			
+			
+			System.out.println();
+			System.out.println("Turno de: " + Pls.get(ps).getRealname());
+			
+			System.out.println(">Preguntas y respuestas:");
+			for(Question q: aplicacion.Qs) {
+				if (id.equals(q.getId_emisor())) {
+					int ps_receptor = Pls_sendPosition(q.getId_receptor());
+					System.out.println(Pls.get(ps).getRealname() + ": " + q.getQuestion());
+					System.out.println(Pls.get(ps_receptor).getUsername() + ": " + q.getAnswer());
+				}
+			}
+			
+		}
 		
 	}
 	public static void revelacion() {
