@@ -170,7 +170,7 @@ public class MaskChat {
 					System.out.print("Pregunta "+j+": " + a.getQuestion());
 					System.out.print("Respuesta: ");
 					String respuesta = in.nextLine();
-					a.setQuestion(respuesta);
+					a.setAnswer(respuesta);
 					if(pr==j) {
 						break;
 					}else {
