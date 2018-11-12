@@ -81,6 +81,8 @@ public class MaskChat {
 			ronda_respuestas(pr);
 			adivinar(pr);
 			revelacion();
+			orden.clear();
+			Pls.clear();
 			do {
 				System.out.print("DEsea jugar de nuevo (S/N): ");
 				String op_sn = in.nextLine();
