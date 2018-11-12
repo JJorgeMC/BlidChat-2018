@@ -91,6 +91,8 @@ public class MaskChat {
 				}else if(op_sn.equalsIgnoreCase("n")) {
 					op = false;
 					break;
+				}else {
+					break;
 				}
 			} while(1!=2);
 			
