@@ -172,4 +172,21 @@ public class aplicacion {
 		}while(opcion!=4);
 	}
 	
+	public static void Ordenar_ranking() {
+		
+	}
+	
+	public static int Us_sendposition (String id_user) {
+		int i = -1;
+		
+		for(User u: Us) {
+			i++;
+			if(id_user.equals(u.getId_user())) {
+				break;
+			}
+		}
+		
+		return i;
+	}
+	
 }

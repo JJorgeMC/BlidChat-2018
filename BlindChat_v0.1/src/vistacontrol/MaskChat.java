@@ -79,7 +79,7 @@ public class MaskChat {
 			ordendeturnos();
 			ronda_preguntas(pr);
 			ronda_respuestas(pr);
-			adivinar();
+			adivinar(pr);
 			revelacion();
 			do {
 				System.out.print("DEsea jugar de nuevo (S/N): ");
@@ -182,7 +182,7 @@ public class MaskChat {
 			
 		}
 	}
-	public static void adivinar() {
+	public static void adivinar(int pr) {
 		System.out.println();
 		System.out.println("********Ronda de adivinacion********");
 		System.out.println("---<¿Quien era la persona detras de la mascara?>---");
@@ -191,22 +191,74 @@ public class MaskChat {
 			int ps = Pls_sendPosition(id);			
 			
 			System.out.println();
-			System.out.println("Turno de: " + Pls.get(ps).getRealname());
+			System.out.println("Turno de: " + Pls.get(ps).getRealname());			
 			
 			System.out.println(">Preguntas y respuestas:");
-			for(Question q: aplicacion.Qs) {
+			int i = 0;
+			for(Question q: aplicacion.Qs) {				
 				if (id.equals(q.getId_emisor())) {
+					i++;
 					int ps_receptor = Pls_sendPosition(q.getId_receptor());
 					System.out.println(Pls.get(ps).getRealname() + ": " + q.getQuestion());
 					System.out.println(Pls.get(ps_receptor).getUsername() + ": " + q.getAnswer());
 				}
+				if(pr==i) {
+					break;
+				}else {
+					System.out.println();
+				}
 			}
 			
+			//listar y ingreso de ps			
+			
+			orden_listar();
+			System.out.print("Escoja la persona detras de la mascara: ");
+			int op_ps = Integer.valueOf(in.nextLine())-1;
+			
+			//Verificacion y establecer si acerto o no
+			
+			for(Question q: aplicacion.Qs) {
+				/* 	Para hacer la verificacion se debe saber quien es el que pregunta y quien es el que responde
+				 * 	tenemos el id del que pregunta pero no el del que responde para eso creamos un este for que 
+				 * 	verifica si el id del objeto que se encuentra en la posicion que el usuario ingreso, es la 
+				 * 	persona a la cual pregunto.
+				 */
+				
+				/*	dos condicioines que deben ser verdaderas. "id" es el id del jugador que esta en partida 
+				 *  y el Pls.get(op_ps).getId_player() es el id de la persona que escogió
+				 */				
+				
+				if(id == q.getId_emisor() && Pls.get(op_ps).getId_player() == q.getId_receptor()) {
+					Pls.get(ps).setState(true);
+					int user_ps = aplicacion.Us_sendposition(Pls.get(ps).getId_user());
+					aplicacion.Us.get(user_ps).setScore(aplicacion.Us.get(user_ps).getScore()+1);
+					if (aplicacion.Us.get(user_ps).getScore() == 1) {
+						aplicacion.addusertoranking(Pls.get(ps).getId_user());
+					}
+					break;
+				}
+			}
+			
+			//fin de turno
+			
+			System.out.println("turno terminado");
+		
 		}
 		
 	}
 	public static void revelacion() {
+		System.out.println();
+		System.out.println("*******Resultados de la partida********");
 		
+		System.out.println();
+		System.out.println("Los que acertaron son: ");
+		System.out.println();
+		// Creo un for para saber que juadores tienen como "state" igual a true. solo a ellos los listaré
+		for (Player p: Pls) {
+			if (p.isState()) {
+				System.out.println("\t* " + p.getRealname());
+			}
+		}
 	}
 	
 	//METODOS AUXILIARES/////////////////////////////////////////////////////////////
@@ -285,6 +337,15 @@ public class MaskChat {
 		if (f==aplicacion.Us.size()) {
 			System.out.println("El usuario o contraseña son incorrectos");
 		}
+	}
+	public static void orden_listar() {
+		int i = 0;
+		for(String id: orden) {
+			i++;
+			int ps = Pls_sendPosition(id);
+			System.out.println(i + ". " + Pls.get(ps).getRealname());	
+		}
+		
 	}
 	
 }
